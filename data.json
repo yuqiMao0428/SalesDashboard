@@ -1,0 +1,33 @@
+{
+  "monthlySales": [
+    { "month": "2025年1月", "amount": 450000 },
+    { "month": "2025年2月", "amount": 520000 },
+    { "month": "2025年3月", "amount": 610000 },
+    { "month": "2025年4月", "amount": 580000 },
+    { "month": "2025年5月", "amount": 720000 },
+    { "month": "2025年6月", "amount": 890000 },
+    { "month": "2025年7月", "amount": 750000 },
+    { "month": "2025年8月", "amount": 920000 },
+    { "month": "2025年9月", "amount": 1100000 },
+    { "month": "2025年10月", "amount": 1350000 },
+    { "month": "2025年11月", "amount": 1200000 },
+    { "month": "2025年12月", "amount": 1600000 }
+  ],
+  "regionalSales": [
+    { "region": "华东地区", "amount": 850000 },
+    { "region": "华北地区", "amount": 720000 },
+    { "region": "华中地区", "amount": 580000 },
+    { "region": "华南地区", "amount": 950000 },
+    { "region": "东北地区", "amount": 420000 },
+    { "region": "西北地区", "amount": 380000 },
+    { "region": "西南地区", "amount": 520000 }
+  ],
+  "staffSales": [
+    { "name": "张三", "currentSales": 380000, "lastMonthSales": 320000 },
+    { "name": "李四", "currentSales": 350000, "lastMonthSales": 380000 },
+    { "name": "王五", "currentSales": 320000, "lastMonthSales": 300000 },
+    { "name": "赵六", "currentSales": 290000, "lastMonthSales": 250000 },
+    { "name": "孙七", "currentSales": 260000, "lastMonthSales": 280000 },
+    { "name": "周八", "currentSales": 250000, "lastMonthSales": 240000 }
+  ]
+}
