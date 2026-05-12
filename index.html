@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>销售数据仪表板</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.1/dist/echarts.min.js"></script>
+    <!-- 中国地图数据 -->
+    <script src="china-map.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <!-- 头部导航 -->
+        <header class="header">
+            <h1>销售数据仪表板</h1>
+            <nav class="nav">
+                <button class="nav-btn active" onclick="showDashboard()">仪表板</button>
+                <button class="nav-btn" onclick="showDataManagement()">数据管理</button>
+            </nav>
+        </header>
+
+        <!-- 仪表板视图 -->
+        <div id="dashboard-view" class="view active">
+            <div class="dashboard-grid">
+                <!-- 近12个月销售金额 -->
+                <div class="card full-width">
+                    <h2>近12个月销售金额趋势</h2>
+                    <div class="chart-container">
+                        <canvas id="salesChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- 区域销售分布地图 -->
+                <div class="card">
+                    <h2>各地区销售分布地图（本月）</h2>
+                    <div id="mapChart" class="map-container"></div>
+                </div>
+
+                <!-- 员工销售排名 -->
+                <div class="card">
+                    <h2>员工销售排名（本月）</h2>
+                    <div class="staff-list">
+                        <table id="staffTable">
+                            <thead>
+                                <tr>
+                                    <th>排名</th>
+                                    <th>员工名称</th>
+                                    <th>销售金额</th>
+                                    <th>同比增长</th>
+                                </tr>
+                            </thead>
+                            <tbody id="staffTableBody">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- 关键指标 -->
+                <div class="card">
+                    <h2>本月关键指标</h2>
+                    <div class="metrics">
+                        <div class="metric-item">
+                            <span class="metric-label">总销售额</span>
+                            <span class="metric-value" id="totalSales">¥0</span>
+                        </div>
+                        <div class="metric-item">
+                            <span class="metric-label">平均单笔</span>
+                            <span class="metric-value" id="avgSales">¥0</span>
+                        </div>
+                        <div class="metric-item">
+                            <span class="metric-label">销售订单数</span>
+                            <span class="metric-value" id="orderCount">0</span>
+                        </div>
+                        <div class="metric-item">
+                            <span class="metric-label">销售人数</span>
+                            <span class="metric-value" id="staffCount">0</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 数据管理视图 -->
+        <div id="data-mgmt-view" class="view">
+            <div class="data-mgmt-container">
+                <h2>销售数据管理</h2>
+
+                <!-- 标签页 -->
+                <div class="tabs">
+                    <button class="tab-btn active" onclick="switchTab('monthly-sales')">月份销售</button>
+                    <button class="tab-btn" onclick="switchTab('regional-sales')">地区销售</button>
+                    <button class="tab-btn" onclick="switchTab('staff-sales')">员工销售</button>
+                </div>
+
+                <!-- 月份销售编辑 -->
+                <div id="monthly-sales" class="tab-content active">
+                    <h3>近12个月销售数据</h3>
+                    <div class="data-editor">
+                        <table id="monthlySalesTable">
+                            <thead>
+                                <tr>
+                                    <th>月份</th>
+                                    <th>销售金额</th>
+                                    <th>操作</th>
+                                </tr>
+                            </thead>
+                            <tbody id="monthlySalesBody">
+                            </tbody>
+                        </table>
+                    </div>
+                    <button onclick="addMonthlyRow()" class="btn btn-primary">添加行</button>
+                </div>
+
+                <!-- 地区销售编辑 -->
+                <div id="regional-sales" class="tab-content">
+                    <h3>本月各地区销售数据</h3>
+                    <div class="data-editor">
+                        <table id="regionalSalesTable">
+                            <thead>
+                                <tr>
+                                    <th>地区名称</th>
+                                    <th>销售金额</th>
+                                    <th>操作</th>
+                                </tr>
+                            </thead>
+                            <tbody id="regionalSalesBody">
+                            </tbody>
+                        </table>
+                    </div>
+                    <button onclick="addRegionalRow()" class="btn btn-primary">添加行</button>
+                </div>
+
+                <!-- 员工销售编辑 -->
+                <div id="staff-sales" class="tab-content">
+                    <h3>本月员工销售数据</h3>
+                    <div class="data-editor">
+                        <table id="staffSalesTable">
+                            <thead>
+                                <tr>
+                                    <th>员工名称</th>
+                                    <th>销售金额</th>
+                                    <th>上月销售</th>
+                                    <th>操作</th>
+                                </tr>
+                            </thead>
+                            <tbody id="staffSalesBody">
+                            </tbody>
+                        </table>
+                    </div>
+                    <button onclick="addStaffRow()" class="btn btn-primary">添加行</button>
+                </div>
+
+                <div class="action-buttons">
+                    <button onclick="saveData()" class="btn btn-success">保存数据</button>
+                    <button onclick="resetData()" class="btn btn-warning">重置为默认</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
